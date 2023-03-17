@@ -35,8 +35,8 @@ if __name__ == "__main__":
     query_rows = cursor.fetchall()
     if query_rows is not None:
         for row in query_rows:
-            #print(row)
-            #print(state_name)
+            # print(row)
+            # print(state_name)
             if (row[1] == state_name):
                 print(row[0])
 
