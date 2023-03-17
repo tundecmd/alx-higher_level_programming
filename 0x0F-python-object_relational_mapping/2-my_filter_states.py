@@ -24,7 +24,7 @@ if __name__ == "__main__":
     """ Execute SQL query to fetch states """
     query = """
         SELECT * FROM states
-        WHERE name LIKE BINARY %(name)s
+        WHERE name LIKE BINARY %s
         ORDER BY id ASC
     """
 
