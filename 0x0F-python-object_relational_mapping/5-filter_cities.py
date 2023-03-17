@@ -24,20 +24,21 @@ if __name__ == "__main__":
 
     """ Execute SQL query to fetch states """
     query = """
-        SELECT cities.name
+        SELECT cities.name, states.name
         FROM cities
         JOIN states ON cities.state_id = states.id
-        WHERE states.name = %s
         ORDER BY cities.id ASC
     """
-    cursor.execute(query, (state_name,))
+    cursor.execute(query)
 
     """ Fetch all rows using fetchall() method """
     query_rows = cursor.fetchall()
     if query_rows is not None:
         for row in query_rows:
-            print(row[0], end=",")
-        print()
+            #print(row)
+            #print(state_name)
+            if (row[1] == state_name):
+                print(row[0])
 
     """ Close the database connection """
     cursor.close()
