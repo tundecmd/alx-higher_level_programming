@@ -6,9 +6,7 @@ import MySQLdb
 
 if __name__ == "__main__":
     """ Get MySQL credentials and database name from command line arguments """
-    username = argv[1]
-    password = argv[2]
-    database = argv[3]
+    username, password, database = argv[1:]
 
     """ Connect to MySQL server """
     conn = MySQLdb.connect(
