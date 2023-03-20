@@ -4,16 +4,17 @@ script that lists all State objects from the database hbtn_0e_6_usa
 """
 import sys
 from sqlalchemy import create_engine
-from sqlalchemy import ForeignKey
-from model_state import Base, State
-from model_city import City
+from relationship_state import Base, State
+from relationship_city import City
 from sqlalchemy.orm import sessionmaker
 
 
 if __name__ == "__main__":
     # Check that the script is being called correctly
     if (len(sys.argv) != 4):
-        print("Usage: {} username password db_name".format(sys.argv[0]))
+        print("Usage: {} username password db_name".format(
+            sys.argv[0]
+            ))
         sys.exit(1)
 
     # Parse command line arguments
@@ -31,12 +32,26 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
+    # Create a new State object
+    new_state = State(name="California")
+    new_city = City(name="San Francisco")
+    new_state.cities.append(new_city)
+
+    # Add the new State object to the session
+    session.add(new_state)
+
+    # Commit the session to the database
+    session.commit()
+
     # Query all State objects from the database and sort them by id
-    results = session.query(State, City).join(City).order_by(City.id)
+    # state = session.query(State).\
+    #     filter(State.name == new_state.name).first()
 
     # Display the results
-    for state, city in results:
-        print("{}: ({}) {}".format(state.name, city.id, city.name))
+    # if state is not None:
+    #     print(state.id)
+    # else:
+    #     print("Not found")
 
     # Close the session
     session.close()

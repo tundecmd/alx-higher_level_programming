@@ -5,8 +5,8 @@ script that lists all State objects from the database hbtn_0e_6_usa
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy import ForeignKey
-from model_state import Base, State
-from model_city import City
+from relationship_state import Base, State
+from relationship_city import City
 from sqlalchemy.orm import sessionmaker
 
 
@@ -32,11 +32,14 @@ if __name__ == "__main__":
     session = Session()
 
     # Query all State objects from the database and sort them by id
-    results = session.query(State, City).join(City).order_by(City.id)
+    cities = session.query(City).order_by(City.id).all()
 
     # Display the results
-    for state, city in results:
-        print("{}: ({}) {}".format(state.name, city.id, city.name))
+    for city in cities:
+        print("{}: {} -> {}".format(city.id, city.name, city.state.name))
+        # for city in state.cities:
+        #     print("\t{}: {}".format(city.id, city.name))
+        # print("{}: ({}) {}".format(state.name, city.id, city.name))
 
     # Close the session
     session.close()
