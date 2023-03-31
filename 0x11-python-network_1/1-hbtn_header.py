@@ -39,6 +39,7 @@ def get_x_request_id(url):
             if x_request_id is None:
                 raise ValueError("Response does not contain the\
                                  X-Request-Id header variable.")
+            print(x_request_id)
             return x_request_id
     except urllib.error.URLError as e:
         raise e
