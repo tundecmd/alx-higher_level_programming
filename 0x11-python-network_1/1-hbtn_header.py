@@ -20,8 +20,7 @@ if __name__ == "__main__":
             x_request_id = dict(response.headers).get("X-Request-Id")
             if x_request_id is not None:
                 print(x_request_id)
-            else:
-                print("X-Request-Id header not found in response.")
+
     except urllib.error.URLError as e:
         print("Error opening URL:", e.reason)
         sys.exit(1)
