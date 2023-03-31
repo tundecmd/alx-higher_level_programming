@@ -3,19 +3,6 @@
 A script that takes a URL, sends a request to the URL,
 and displays the value of the X-Request-Id header
 variable found in the response.
-
-
-Usage:
-    ./1-hbtn_header.py URL
-
-
-Arguments:
-    URL: The URL to send the request to.
-
-
-Example:
-    ./1-hbtn_header.py https://alx-intranet.hbtn.io
-
 """
 
 
